@@ -99,6 +99,30 @@
 		#list{
 			display: none;
 		}
+		/* 过渡效果动画 */
+		.flipped-horizontal-right {
+			transform: rotateY(360deg);
+			transition: .9s ease-out;
+
+		}
+
+
+		.flipped-horizontal-left {
+			transform: rotateY(-360deg);
+			transition: .9s ease-out;
+
+		}
+
+		.flipped-vertical-top {
+			transform: rotateX(360deg);
+			transition: .9s ease-out;
+
+		}
+
+		.flipped-vertical-bottom {
+			transform: rotateX(-360deg);
+			transition: .9s ease-out;
+		}
   </style>
  </head>
  <body>
@@ -158,8 +182,13 @@
 			// console.log(oListImg)
 			// console.log(oPort)
 			var btnMark = 0;
+			//bug:注意变量一定要放在函数前面,不然若在函数调用的时候会显示undefined
+			//设置旋转的方向
+			var rotation = ['flipped-horizontal-right','flipped-horizontal-left','flipped-vertical-top','flipped-vertical-bottom'];
+			var animation = null;
 			//页面初始化
 			getImg(0);
+			
 			//1.按钮的点击事件
 			for(var i = 0,len = aBtn.length; i<len; i++){
 			//3.执行点击按钮变色的操作
@@ -170,8 +199,13 @@
 					//必须用this,不能用aBtn[i],会报错
 					btnMark = this.index;
 					this.className += ' selected';
-					oPort.innerHTML = '';
-					getImg(this.index);
+					addAnimation();
+					// 延时显示过渡效果
+					setTimeout(function(){ 
+						oPort.innerHTML = '';
+						getImg(btnMark); 
+					}, 500);
+					
 				}
 			}
 			//4.将获取图片封装成函数,放在点击事件里面
@@ -183,13 +217,21 @@
 					imgData = oListImg.children[i].children[0];
 					src = imgData.getAttribute('src');
 					alt = imgData.getAttribute('alt');
-					// console.log(src , alt)
 				//2.2 构建数据载体
 					oPort.innerHTML += '<div style="background:url('+src+')"><span>'+alt+'</span></div>';
 					
 				}
 			}
-			
+			// 5.添加css随机旋转过渡效果
+			function addAnimation(){
+				var random = null;
+				for(var i = 0; i< imgNum; i++){
+					random = Math.floor(Math.random() * 4);//产生随机数，并向下取整 1 2 3 4
+					//bug:注意不能直接写'rotation[random]'
+					oPort.children[i].className = ''+rotation[random];
+					// console.log(oPort.children[i])
+				}	 
+			}
 		</script>
  </body>
 </html>
