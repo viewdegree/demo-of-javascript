@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>随机旋转过渡</title>
+  <style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body {
+		  margin-top: 10px;
+		  background: radial-gradient(ellipse at center,  #e9eadc 19%,#adaca2 100%);
+		  background-repeat: no-repeat;
+		  background-attachment: fixed;
+		  font-family: Oswald, Arial;
+		  text-align: center;
+		  color: #47473c;
+		}
+		a {
+		  color: #47473c;
+		  font-family: Lobster;
+		  font-style: normal;
+		  text-decoration: none;
+		  font-size: 15px;
+		}
+		a:hover {
+		  text-decoration: underline;
+		}
+		h1 {
+		  font-family: Lobster;
+		  font-weight: normal;
+		  margin: 0;
+		}
+		#container {
+			margin: 0 auto;
+			max-width: 856px;
+			perspective: 2000px;
+		}
+		#information {
+			margin-top: 1em;
+			display: block;
+			color: red;
+			font-size: 20px;
+		 }
+		  
+		#navigation a {
+			display: inline-block;
+			line-height: 2.8em;
+			margin-right: 1em;
+			width: 40px;
+			height: 40px;
+			background: rgba(0,0,0,0.1);
+			color: #fff;
+			border-radius: 40px;
+			transition: .3s ease-in;
+		}
+		  
+		#navigation a.selected, #navigation a:hover {
+			background: rgba(0,0,0,.3);
+			text-decoration: none;
+		}
+
+		#portfolio-item {
+			display: none;
+		}
+		  
+		#portfolio {
+			margin: 10px 0;
+			transform-style: preserve-3d;
+		}
+
+		#portfolio div {
+			display: inline-block;
+			position: relative;
+			vertical-align: top;
+			margin: 1em;
+			width: 180px;
+			height: 140px;
+			box-shadow: 0px 0px 14px rgba(0,0,0,.3);
+		}
+		  
+		#portfolio div span {
+		  text-align: left;
+		  position: absolute;
+		  color: #fff;
+		  background: rgba(0,0,0,0.6);
+		  width: 90px;
+		  padding: 5px 15px 7px;
+		  z-index: 1;
+		  left: -10px;
+		  bottom: 10px;
+		}
+		
+		#list{
+			display: none;
+		}
+		/* 过渡效果动画 */
+		.flipped-horizontal-right {
+			transform: rotateY(360deg);
+			transition: .9s ease-out;
+
+		}
+
+
+		.flipped-horizontal-left {
+			transform: rotateY(-360deg);
+			transition: .9s ease-out;
+
+		}
+
+		.flipped-vertical-top {
+			transform: rotateX(360deg);
+			transition: .9s ease-out;
+
+		}
+
+		.flipped-vertical-bottom {
+			transform: rotateX(-360deg);
+			transition: .9s ease-out;
+		}
+  </style>
+ </head>
+ <body>
+		<div id="container">
+			<div id="portfolio"></div>
+    
+			<nav id="navigation">
+			  <a href="#1" class="nav selected">1</a>
+			  <a href="#2" class="nav">2</a>
+			  <a href="#3" class="nav">3</a>
+			  <a href="#4" class="nav">4</a>
+			</nav>
+			<ul id="list">
+			  <li><img src="images/dumptruck_teaser.jpeg" alt="Dump Truck" /></li>
+			  <li><img src="images/rrwooo_rrwooo_teaser.jpeg" alt="Rrwooo" /></li>
+			  <li><img src="images/dozer_teaser.jpeg" alt="Dozer" /></li>
+			  <li><img src="images/ltah_teaser.jpeg" alt="Ltah" /></li>
+			  <li><img src="images/pirates_teaser.jpeg" alt="Pirates" /></li>
+			  <li><img src="images/rustler_teaser.jpeg" alt="Rustler" /></li>
+			  <li><img src="images/satellite_teaser.jpeg" alt="Satellite" /></li>
+			  <li><img src="images/werewolf_teaser.jpeg" alt="Werewolf" /></li>
+			  <li><img src="images/box_socks_teaser.jpeg" alt="Box Socks" /></li>
+			  <li><img src="images/capt_kidd_teaser.jpeg" alt="Capt Kidd" /></li>
+			  <li><img src="images/bat_bedtime_teaser.jpeg" alt="Bat Bedtime" /></li>
+			  <li><img src="images/grrr_teaser.jpeg" alt="Grrr" /></li>
+			  <li><img src="images/eensy_teaser.jpeg" alt="Eensy" /></li>
+			  <li><img src="images/derby_lady_teaser.jpeg" alt="Derby Lady" /></li>
+			  <li><img src="images/carrot_teaser.jpeg" alt="Carrot" /></li>
+			  <li><img src="images/brush_teaser.jpeg" alt="Brush" /></li>
+			  <li><img src="images/nunatakdribbble_teaser.jpeg" alt="Nunatak" /></li>
+			  <li><img src="images/reefdribbble_teaser.jpeg" alt="Reef" /></li>
+			  <li><img src="images/glacier_teaser.jpeg" alt="Glacier" /></li>
+			  <li><img src="images/carddribbble_teaser.jpeg" alt="Card" /></li>
+			  <li><img src="images/cove_teaser.jpeg" alt="Cove" /></li>
+			  <li><img src="images/canal_teaser.jpeg" alt="Canal" /></li>
+			  <li><img src="images/shot_1300121080_teaser.jpeg" alt="Biome" /></li>
+			  <li><img src="images/shot_1300969987_teaser.jpeg" alt="Globe" /></li>
+			  <li><img src="images/bestican_teaser.jpeg" alt="Bestican" /></li>
+			  <li><img src="images/bifocal_teaser.jpeg" alt="Bifocal" /></li>
+			  <li><img src="images/soupsearch_teaser.jpeg" alt="Soup Search" /></li>
+			  <li><img src="images/sub_teaser.jpeg" alt="Submarine" /></li>
+			  <li><img src="images/tomatosoup_teaser.jpeg" alt="Tomato Soup" /></li>
+			  <li><img src="images/harry_teaser.jpeg" alt="Hipster Harry" /></li>
+			  <li><img src="images/for_the_man_teaser.jpeg" alt="For The Man" /></li>
+			  <li><img src="images/extra_teaser.jpeg" alt="Indulgence" /></li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var aBtn = document.getElementsByClassName('nav');
+			// console.log(aBtn);
+			var oListImg = document.getElementById('list');
+			var imgNum = 8;
+			var imgData = null;
+			var src = null;
+			var alt = null;
+			var oPort = document.getElementById('portfolio');
+			// console.log(oListImg)
+			// console.log(oPort)
+			var btnMark = 0;
+			//bug:注意变量一定要放在函数前面,不然若在函数调用的时候会显示undefined
+			//设置旋转的方向
+			var rotation = ['flipped-horizontal-right','flipped-horizontal-left','flipped-vertical-top','flipped-vertical-bottom'];
+			var animation = null;
+			//页面初始化
+			getImg(0);
+			
+			//1.按钮的点击事件
+			for(var i = 0,len = aBtn.length; i<len; i++){
+			//3.执行点击按钮变色的操作
+				aBtn[i].index = i;
+				aBtn[i].onclick = function(){
+					// console.log(this)
+					aBtn[btnMark].className = 'nav';
+					//必须用this,不能用aBtn[i],会报错
+					btnMark = this.index;
+					this.className += ' selected';
+					addAnimation();
+					// 延时显示过渡效果
+					setTimeout(function(){ 
+						oPort.innerHTML = '';
+						getImg(btnMark); 
+					}, 500);
+					
+				}
+			}
+			//4.将获取图片封装成函数,放在点击事件里面
+			function getImg(start){
+				//2.获取数据 src 和 alt
+				for(var i = start*8; i < start*8 + imgNum; i++){
+				//2.1获取数据	
+					// console.log(oListImg.children[i])
+					imgData = oListImg.children[i].children[0];
+					src = imgData.getAttribute('src');
+					alt = imgData.getAttribute('alt');
+				//2.2 构建数据载体
+					oPort.innerHTML += '<div style="background:url('+src+')"><span>'+alt+'</span></div>';
+					
+				}
+			}
+			// 5.添加css随机旋转过渡效果
+			function addAnimation(){
+				var random = null;
+				for(var i = 0; i< imgNum; i++){
+					random = Math.floor(Math.random() * 4);//产生随机数，并向下取整 1 2 3 4
+					//bug:注意不能直接写'rotation[random]'
+					oPort.children[i].className = ''+rotation[random];
+					// console.log(oPort.children[i])
+				}	 
+			}
+		</script>
+ </body>
+</html>
