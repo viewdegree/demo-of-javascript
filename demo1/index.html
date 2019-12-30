@@ -149,19 +149,27 @@
 		<script type="text/javascript">
 			var aBtn = document.getElementsByClassName('nav');
 			// console.log(aBtn);
-			var oListImg = document.getElementById('list')
+			var oListImg = document.getElementById('list');
 			var imgNum = 6;
 			var imgData = null;
 			var src = null;
 			var alt = null;
-			var oPort = document.getElementById('portfolio')
+			var oPort = document.getElementById('portfolio');
 			// console.log(oListImg)
 			// console.log(oPort)
+			var btnMark = 0;
+			
 			
 			//1.按钮的点击事件
 			for(var i = 0,len = aBtn.length; i<len; i++){
+			//3.执行点击按钮变色的操作
+				aBtn[i].index = i;
 				aBtn[i].onclick = function(){
 					// console.log(this)
+					aBtn[btnMark].className = 'nav';
+					//必须用this,不能用aBtn[i],会报错
+					btnMark = this.index;
+					this.className += ' selected';
 				}
 			}
 			
@@ -170,11 +178,11 @@
 			//2.1获取数据	
 				// console.log(oListImg.children[i])
 				imgData = oListImg.children[i].children[0];
-				src = imgData.getAttribute('src')
-				alt = imgData.getAttribute('alt')
+				src = imgData.getAttribute('src');
+				alt = imgData.getAttribute('alt');
 				// console.log(src , alt)
 			//2.2 构建数据载体
-				oPort.innerHTML += '<div style="background:url('+src+')"><span>'+alt+'</span></div>'
+				oPort.innerHTML += '<div style="background:url('+src+')"><span>'+alt+'</span></div>';
 				
 			}
 		</script>
