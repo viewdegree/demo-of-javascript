@@ -150,7 +150,7 @@
 			var aBtn = document.getElementsByClassName('nav');
 			// console.log(aBtn);
 			var oListImg = document.getElementById('list');
-			var imgNum = 6;
+			var imgNum = 8;
 			var imgData = null;
 			var src = null;
 			var alt = null;
@@ -158,8 +158,8 @@
 			// console.log(oListImg)
 			// console.log(oPort)
 			var btnMark = 0;
-			
-			
+			//页面初始化
+			getImg(0);
 			//1.按钮的点击事件
 			for(var i = 0,len = aBtn.length; i<len; i++){
 			//3.执行点击按钮变色的操作
@@ -170,21 +170,26 @@
 					//必须用this,不能用aBtn[i],会报错
 					btnMark = this.index;
 					this.className += ' selected';
+					oPort.innerHTML = '';
+					getImg(this.index);
+				}
+			}
+			//4.将获取图片封装成函数,放在点击事件里面
+			function getImg(start){
+				//2.获取数据 src 和 alt
+				for(var i = start*8; i < start*8 + imgNum; i++){
+				//2.1获取数据	
+					// console.log(oListImg.children[i])
+					imgData = oListImg.children[i].children[0];
+					src = imgData.getAttribute('src');
+					alt = imgData.getAttribute('alt');
+					// console.log(src , alt)
+				//2.2 构建数据载体
+					oPort.innerHTML += '<div style="background:url('+src+')"><span>'+alt+'</span></div>';
+					
 				}
 			}
 			
-			//2.获取数据 src 和 alt
-			for(var i = 0; i < imgNum; i++){
-			//2.1获取数据	
-				// console.log(oListImg.children[i])
-				imgData = oListImg.children[i].children[0];
-				src = imgData.getAttribute('src');
-				alt = imgData.getAttribute('alt');
-				// console.log(src , alt)
-			//2.2 构建数据载体
-				oPort.innerHTML += '<div style="background:url('+src+')"><span>'+alt+'</span></div>';
-				
-			}
 		</script>
  </body>
 </html>
