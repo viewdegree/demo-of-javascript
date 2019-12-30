@@ -6,7 +6,7 @@
   <meta name="Author" content="">
   <meta name="Keywords" content="">
   <meta name="Description" content="">
-  <title>Document</title>
+  <title>随机旋转过渡</title>
   <style type="text/css">
 		*{
 			margin: 0;
@@ -109,6 +109,19 @@
 			  <a href="#3" class="nav">3</a>
 			  <a href="#4" class="nav">4</a>
 			</nav>
+			
 		</div>
+		<script type="text/javascript">
+			var aBtn = document.getElementsByClassName('nav');
+			// console.log(aBtn);
+			
+			
+			//1.按钮的点击事件
+			for(var i = 0,len = aBtn.length; i<len; i++)
+			aBtn[i].onclick = function(){
+				// console.log(this)
+			}
+			
+		</script>
  </body>
 </html>
