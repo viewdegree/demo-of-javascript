@@ -29,7 +29,19 @@
 				height: 150px;
 				float: left;
 				margin: 15px 10px 0;
-				background: url(images/clients.png) no-repeat 0px 0px;
+				background: url(images/clients.png) no-repeat;
+				outline: 1px dotted #999;
+				transition: all 0.2s linear;
+			}
+			/* #imgList>li:hover{
+				background-position-y: -150px;
+			} */
+			#imgList .cover{
+				visibility: hidden;
+				background: #47473C;
+				opacity: 0.5;
+				transform: translate(0px,0px);/*250 165*/
+				z-index: 1;
 			}
 		</style>
 	</head>
@@ -51,10 +63,60 @@
 				<li></li>
 				<li></li>
 				<li></li>
+				<li class="cover"></li>
 			</ul>
 		</div>
 		<script type="text/javascript">
-			
+			let oImgContain = document.getElementById("imgList")
+			let aImgLi = document.querySelectorAll('#imgList>li');
+			let oCover = document.querySelector('.cover');
+			let current = null;
+			for(let i=0,len=aImgLi.length-1; i<len; i++){
+				aImgLi[i].style.backgroundPositionX = ''+-230*i+'px';
+				// 第一次移入记录
+				oImgContain.addEventListener('mouseenter',function(){
+					oCover.style.visibility = 'visible';
+					aImgLi[i].addEventListener('mouseenter',function(){
+						moveIn1(i,this);
+					},false)
+					oCover.addEventListener('mouseenter',function(){
+							moveIn();
+					},false)
+				},false)
+				// 双重鼠标移入时间
+				// aImgLi[i].addEventListener('mouseenter',function(){
+				// 	oCover.addEventListener('mouseenter',function(){
+				// 		moveIn1(i,that);
+				// 		moveIn()
+				// 	},false)
+				// },false)
+				// 双重鼠标移除事件,单独只有aImgLi[i].addEventListener('mouseleave',function(){}的话会在元素之内消失,因为遮挡层的原因
+				aImgLi[i].addEventListener('mouseleave',function(){
+					var that = this;
+					oCover.addEventListener('mouseleave',function(){
+						moveOut1(that)
+						moveOut()
+					},false)
+				},false)
+			}
+			// 针对oCover的移入事件
+			function moveIn(){
+				current.style.backgroundPositionY = '-150px';
+			}
+			// 针对aImgLi[i]的移入事件
+			function moveIn1(i,dom){
+				oCover.style.transform = 'translate('+((i%5)*250)+'px,'+((3-Math.floor(i/5))*-165)+'px)';
+				dom.style.backgroundPositionY = '-150px';
+				current = dom;
+			}
+			// 针对oCover的移出事件
+			function moveOut(){
+				current.style.backgroundPositionY = '0';
+			}
+			// 针对aImgLi[i]的移出事件
+			function moveOut1(dom){
+				dom.style.backgroundPositionY = '0';
+			}
 		</script>
 	</body>
 </html>
