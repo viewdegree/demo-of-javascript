@@ -30,6 +30,15 @@
 				float: left;
 				margin: 15px 10px 0;
 				background: url(images/clients.png) no-repeat 0px 0px;
+				outline: 1px dotted #999;
+				transition: all 0.2s linear;
+			}
+			#imgList .cover{
+				background: #47473C;
+				opacity: 0.5;
+				transform: translate(0px,0px);/*250 165*/
+				z-index: 1;
+				pointer-events:none;	/*鼠标事件穿透开启*/
 			}
 		</style>
 	</head>
@@ -51,10 +60,23 @@
 				<li></li>
 				<li></li>
 				<li></li>
+				<li class="cover"></li>
 			</ul>
 		</div>
 		<script type="text/javascript">
-			
+			let aImgLi = document.querySelectorAll('#imgList>li');
+			let oCover = document.querySelector('.cover');
+			for(let i=0,len=aImgLi.length-1; i<len; i++){
+				// 1.精灵背景图的定位设置
+				aImgLi[i].style.backgroundPositionX = ''+-230*i+'px';
+				aImgLi[i].onmouseover = function(){
+					oCover.style.transform = 'translate('+((i%5)*250)+'px,'+((3-Math.floor(i/5))*-165)+'px)';
+					this.style.backgroundPositionY = '-150px';
+				}
+				aImgLi[i].onmouseleave = function(){
+					this.style.backgroundPositionY = '0px';
+				}
+			}
 		</script>
 	</body>
 </html>
