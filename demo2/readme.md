@@ -4,3 +4,4 @@
 
 通过js去修改transform:translate(x,y),来实现遮罩层的位移
 
+利用css的属性pointer-events:none;去实现鼠标事件穿透.
