@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>鼠标跟随效果</title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			html,body{width: 100%;height: 100%;}
+			body{
+				background: url(images/wallpaper.jpg) no-repeat center/100% 100%;
+			}
+			#container{
+				width: 1250px;
+				height: 500px;
+				margin: 0 auto;
+				/* 如果直接使用margin: 50px auto 0;则body也会跟着下移,这里我们可以使用位移效果 */
+				transform: translate(0,50px);
+			}
+			#imgList{
+				list-style: none;
+				height: 100%;
+			}
+			#imgList>li{
+				width: 230px;
+				height: 150px;
+				float: left;
+				margin: 15px 10px 0;
+				background: url(images/clients.png) no-repeat 0px 0px;
+				outline: 1px dotted #999;
+				transition: all 0.2s linear;
+			}
+			#imgList .cover{
+				background: #47473C;
+				opacity: 0.5;
+				transform: translate(0px,0px);/*250 165*/
+				z-index: 1;
+				pointer-events:none;	/*鼠标事件穿透开启*/
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<ul id="imgList">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li class="cover"></li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			let aImgLi = document.querySelectorAll('#imgList>li');
+			let oCover = document.querySelector('.cover');
+			for(let i=0,len=aImgLi.length-1; i<len; i++){
+				// 1.精灵背景图的定位设置
+				aImgLi[i].style.backgroundPositionX = ''+-230*i+'px';
+				aImgLi[i].onmouseover = function(){
+					oCover.style.transform = 'translate('+((i%5)*250)+'px,'+((3-Math.floor(i/5))*-165)+'px)';
+					this.style.backgroundPositionY = '-150px';
+				}
+				aImgLi[i].onmouseleave = function(){
+					this.style.backgroundPositionY = '0px';
+				}
+			}
+		</script>
+	</body>
+</html>
